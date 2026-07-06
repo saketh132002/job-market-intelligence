@@ -1,0 +1,15 @@
+# data files never go in git
+*.csv
+*.json
+*.zip
+*.parquet
+data/
+
+# local junk
+.DS_Store
+__pycache__/
+.ipynb_checkpoints/
+
+# secrets
+.env
+*.token
