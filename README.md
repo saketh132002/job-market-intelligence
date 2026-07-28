@@ -7,7 +7,9 @@ Built on Databricks (PySpark · Delta Lake · Databricks SQL), with a medallion
 lakehouse pipeline, dictionary + LLM skill extraction, and a live analytics
 dashboard.
 
-<!-- TODO Day 25: dashboard screenshot here -->
+![Architecture](docs/architecture-diagram.png)
+
+![Dashboard](docs/screenshots/dashboard-day17.png) 
 
 ---
 
@@ -108,9 +110,12 @@ A few decisions that shaped the build:
 
 ## Honest limitations
 
-- **The historical backfill is a single-month snapshot** (Apr 2024). It gives a
-  rich cross-sectional picture but no trend — trends come from the live Adzuna
-  feed, which thickens as daily ingestion accumulates.
+- **The historical backfill is a single-month snapshot** (Apr 2024) — rich
+  cross-section, no trend. Trends come from the live Adzuna feed. Soak-
+  testing revealed the feed saturates: six search terms surface ~2,600
+  distinct jobs and daily net-new collapses to a trickle, so broadening
+  the search (more terms, pages, or sources like USAJobs) is the next
+  step for time-series depth.
 - **Only ~24% of postings disclose salary.** All salary figures are built from
   that disclosed subset, floored at n≥30 per skill×state cell.
 - **Adzuna descriptions are truncated at 500 characters**, yielding fewer skills
@@ -122,5 +127,23 @@ A few decisions that shaped the build:
 
 ---
 
-<!-- TODO Day 25: architecture diagram image, setup/run instructions,
-     screenshots, demo GIF, tech-stack badges -->
+## Running it yourself
+
+This is a Databricks project (built on Free Edition, serverless compute).
+To reproduce:
+
+1. **Workspace** — a Databricks workspace with Unity Catalog. Create a
+   catalog `jobmarket` with schemas `bronze`, `silver`, `gold`.
+2. **Credentials** — an Adzuna API key (free at developer.adzuna.com),
+   stored in a Databricks secret scope named `jobmarket`
+   (`adzuna_app_id`, `adzuna_app_key`).
+3. **Historical data** — a Kaggle LinkedIn postings CSV, uploaded to a
+   volume under `jobmarket.bronze`.
+4. **Run order** — notebooks are numbered by stage:
+   `02_ingestion` → `03_silver` → `04_skills` → `05_gold`. The
+   one-time Kaggle backfill and the skills-dictionary build run once;
+   everything else runs daily via the scheduled job.
+5. **Orchestration** — the `daily_pipeline` job (definition in
+   `jobs/`) chains all stages with a data-quality gate before Gold.
+
+Notebooks are `.ipynb`; serving queries are in `sql/`.
