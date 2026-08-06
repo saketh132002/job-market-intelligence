@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 import json
+from pathlib import Path
+
+DATA_DIR = Path(__file__).parent / "data"
 
 st.title("Job Market Intelligence")
 st.caption("Skills, salaries, and demand from ~117k real job postings · "
@@ -8,7 +11,7 @@ st.caption("Skills, salaries, and demand from ~117k real job postings · "
 
 @st.cache_data
 def load(name):
-    return pd.read_parquet(f"data/{name}.parquet")
+    return pd.read_parquet(DATA_DIR / f"{name}.parquet")
 
 roles   = load("gold_role_summary")
 pairs   = load("gold_skill_pairs")
