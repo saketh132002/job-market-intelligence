@@ -15,7 +15,7 @@ dashboard.
 
 ![App — skill pairs](docs/screenshots/app-skill-pairs.png.png)
 
-![Architecture](docs/screenshots/architecture-diagram.png)
+![Architecture](docs/screenshots/architecture-diagram_1.png)
 
 ![Dashboard](docs/screenshots/dashboard-day17.png.png) 
 
