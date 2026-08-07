@@ -10,6 +10,7 @@ what skills does the market demand, what do they pay, and what goes with what.**
 Built on Databricks (PySpark · Delta Lake · Databricks SQL), with a medallion
 lakehouse pipeline, dictionary + LLM skill extraction, and a live analytics
 dashboard.
+
 ![App — role search](docs/screenshots/app-role-search.png)
 
 ![App — skill pairs](docs/screenshots/app-skill-pairs.png)
