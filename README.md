@@ -11,13 +11,13 @@ Built on Databricks (PySpark · Delta Lake · Databricks SQL), with a medallion
 lakehouse pipeline, dictionary + LLM skill extraction, and a live analytics
 dashboard.
 
-![App — role search](docs/screenshots/app-role-search.png)
+![App — role search](docs/screenshots/app-role-search.png.png)
 
-![App — skill pairs](docs/screenshots/app-skill-pairs.png)
+![App — skill pairs](docs/screenshots/app-skill-pairs.png.png)
 
 ![Architecture](docs/screenshots/architecture-diagram.png)
 
-![Dashboard](docs/screenshots/dashboard-day17.png) 
+![Dashboard](docs/screenshots/dashboard-day17.png.png) 
 
 ---
 
