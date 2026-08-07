@@ -1,5 +1,9 @@
 # Job Market Intelligence Platform
 
+### ▶ [Try the live app] https://job-market-intelligence-hpsibp7kd53rtofx5ht7vx.streamlit.app/
+
+*Search any role for its skills and salary, explore which skills pair together, and see what the market demands. (Data snapshot: August 2026.)*
+
 **An end-to-end data platform that reads ~117,000 real job postings to answer:
 what skills does the market demand, what do they pay, and what goes with what.**
 
